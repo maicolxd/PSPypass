@@ -15,16 +15,20 @@ This script works on Python 2.7. Tested on macOS 10.11 and Ubuntu 16.04 LTS
 
 Just run as a script:
 
-```
-$ python pspypass.py
-```
+```$ python pspypass.py```
 
 Above command runs the proxy on tcp/8080.
 To use another port, specify the port number as the first argument.
 
-```
-$ python pspypass.py 8080
-```
+```$ python pspypass.py 8080```
+
+If you want the script run as a deamon (Run the proxy in the backgroud), just run the shell script
+
+```$ pspypass.sh start```
+
+To stop:
+
+```$ pspypass.sh stop```
 
 ## Customize
 
