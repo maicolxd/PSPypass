@@ -18,6 +18,8 @@ from cStringIO import StringIO
 from subprocess import Popen, PIPE
 from HTMLParser import HTMLParser
 
+region_id = 'jp' # Set your region!
+fake_version = '3.55' #Set current version of your PS4 firmware, if it doesn't work, try to subtract 0.01 with the version number
 
 def with_color(c, s):
     return "\x1b[%dm%s\x1b[0m" % (c, s)
@@ -166,14 +168,13 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
         content_encoding = res.headers.get('Content-Encoding', 'identity')
         res_body_plain = self.decode_content_body(res_body, content_encoding)
 
-        res_body_modified = self.response_handler(req, req_body, res, res_body_plain)
-        if res_body_modified is False:
-            self.send_error(403)
-            return
-        elif res_body_modified is not None:
-            res_body_plain = res_body_modified
-            res_body = self.encode_content_body(res_body_plain, content_encoding)
-            res.headers['Content-Length'] = str(len(res_body))
+        if 'PS4UPDATE.PUP' in res_body_plain:
+            with open('updater.xml', 'r') as fakeUpdateInfo:
+                info = fakeUpdateInfo.read()
+                info = info.replace('region_id', 'jp')
+                info = info.replace('fake_version', fake_version)
+                res_body_plain = info
+            res_body = res_body_plain
 
         res_headers = self.filter_headers(res.headers)
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<update_data_list>
+	<region id="region_id">
+		<force_update>
+			<system level0_system_version="0fake_version0.000" level1_system_version="0fake_version0.000"/>
+		</force_update>
+		<system_pup label="fake_version" sdk_version="0fake_version0.000" version="0fake_version0.000">
+			<update_data update_type="full">
+				<image size="299649024">http://google.com</image>
+			</update_data>
+		</system_pup>
+		<recovery_pup type="default">
+			<system_pup label="fake_version" sdk_version="0fake_version0.000" version="0fake_version0.000"/>
+			<image size="878051840">http://google.com</image>
+		</recovery_pup>
+	</region>
+</update_data_list>
