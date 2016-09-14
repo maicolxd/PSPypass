@@ -154,6 +154,23 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
             conn = self.tls.conns[origin]
             conn.request(self.command, path, req_body, dict(req_headers))
             res = conn.getresponse()
+
+            if '.pkg?downloadId=' in self.path:
+                version_table = {10: 'HTTP/1.0', 11: 'HTTP/1.1'}
+                setattr(res, 'headers', res.msg)
+                setattr(res, 'response_version', version_table[res.version])
+                res_headers = self.filter_headers(res.headers)
+
+                self.wfile.write("%s %d %s\r\n" % (self.protocol_version, res.status, res.reason))
+                for line in res_headers.headers:
+                    self.wfile.write(line)
+                self.end_headers()
+                re = res.read(1024)
+                while re:
+                    self.wfile.write(re)
+                    self.wfile.flush()
+                    re = res.read(1024)
+
             res_body = res.read()
         except Exception as e:
             if origin in self.tls.conns:
@@ -182,8 +199,11 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
         for line in res_headers.headers:
             self.wfile.write(line)
         self.end_headers()
-        self.wfile.write(res_body)
-        self.wfile.flush()
+        re = res.read(1024)
+        while re:
+            self.wfile.write(re)
+            self.wfile.flush()
+            re = res.read(1024)
 
         with self.lock:
             self.save_handler(req, req_body, res, res_body_plain)
