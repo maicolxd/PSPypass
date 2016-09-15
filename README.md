@@ -1,6 +1,8 @@
 # PSPypass
 
-Bypass PS4 update checker. Most of the code in this project is based on [inaz2/proxy2](https://github.com/inaz2/proxy2)
+Bypass PS4 update checker. 
+
+Most of the code in this project is based on [inaz2/proxy2](https://github.com/inaz2/proxy2)
 
 
 ## Features
