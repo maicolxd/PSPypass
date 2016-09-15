@@ -54,6 +54,12 @@ Example:
 iptables -A ufw-user-input -p tcp -m tcp --dport 8080 -j ACCEPT
 ```
 
+If your server is available in public, it's better to set a whitelist of IP, so other people won't connect to your proxy and waste your bandwidth.
+
+
+```
+iptables -A ufw-user-input -p tcp -m tcp -s 12.34.56.78 --dport 8080 -j ACCEPT
+```
 
 ## References
 
