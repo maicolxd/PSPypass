@@ -41,9 +41,9 @@ Change these values in pspypass.py
 Region ID is based on the region of PS4 hardware, not the region of your PSN account.
 
 
-`fake_version`: Your firmware version. <b>NOT</b> the latest version of official firmware. 
+`os_version`: Your firmware version. <b>NOT</b> the latest version of official firmware. 
 
-For example: You are on FW 3.50 and 4.00 is released. Just set `fake_version` to 3.50 or below.
+For example: You are on FW 3.50 and 4.00 is released. Just set `os_version ` to 3.50 or below.
 
 
 ## Firewall
