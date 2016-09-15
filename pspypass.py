@@ -201,11 +201,8 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
         for line in res_headers.headers:
             self.wfile.write(line)
         self.end_headers()
-        re = res.read(1024)
-        while re:
-            self.wfile.write(re)
-            self.wfile.flush()
-            re = res.read(1024)
+        self.wfile.write(res_body)
+        self.wfile.flush()
 
         with self.lock:
             self.save_handler(req, req_body, res, res_body_plain)

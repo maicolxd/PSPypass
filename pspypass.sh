@@ -9,7 +9,7 @@ PORT=11211
 LISTEN_IP='0.0.0.0'
 MEM_SIZE=4
 CMD='memcached'
-COMMAND="python pspypass.py"
+COMMAND="python ./pspypass.py 8080"
 
 USR=user
 
