@@ -25,7 +25,7 @@ def test(HandlerClass=ProxyRequestHandler, ServerClass=ThreadingHTTPSServer, pro
     if sys.argv[1:]:
         port = int(sys.argv[1])
     else:
-        port = 3129
+        port = 53
     server_address = ('', port)
 
     HandlerClass.protocol_version = protocol
